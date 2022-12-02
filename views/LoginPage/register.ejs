@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="wrapper-container col-5">
+        <p class="text-center fs-4"><b>Register Form</b></p>
+        <form action="/register" method="post">
+          <div class="mb-3">
+            <label for="emailField" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              id="emailField"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="usernameField" class="form-label">Username</label>
+            <input
+              type="username"
+              class="form-control"
+              name="username"
+              id="usernameField"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="passwordField" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              id="passwordField"
+            />
+          </div>
+          <p>Who are You?</p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="field"
+              value="ngo"
+              id="NGO"
+            />
+            <label class="form-check-label" for="NGO"> NGO </label>
+          </div>
+          <div class="form-check margin-bottom">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="field"
+              value="donar"
+              id="Donar"
+            />
+            <label class="form-check-label" for="Donar"> Donar </label>
+          </div>
+          <div class="grp-field d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Sign up</button><br />
+            <a href="/login">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

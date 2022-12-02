@@ -1,0 +1,33 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    background: linear-gradient(to bottom,#71c5ee,#025091);
+    background-attachment: fixed;
+    font-size: 16px;
+    min-height: 100vh;
+}
+.wrapper-container{
+    margin: 40px;
+    background-color: white;
+    border-radius: 16px;
+    justify-content: center;
+    max-height: 1200px;
+    padding: 2rem;
+}
+
+.margin-top,.margin-top a{
+    margin-top: 1rem;
+}
+.margin-bottom{
+    margin-bottom: 1rem;
+}
+
+a:link{
+    text-decoration: none;
+}
+.display-none{
+    display: none;
+}
