@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper-container">
+        <h2>Welcome <%= userDetails[0].name %> ,</h2>
+        <div class="row d-flex">
+          <section class="col-7">
+            <h3>Profile</h3>
+            <span class="text-design"
+              ><b>Organisation Name:</b><%= userDetails[0].name %> </span
+            ><br />
+            <span class="text-design"
+              ><b>Contact No:</b><%= userDetails[0].phone %> </span
+            ><br />
+            <span class="text-design"
+              ><b>Email:</b><%= userDetails[0].email %> </span
+            ><br />
+            <div class="btn-grp m-3">
+              <a
+                class="btn btn-info margin-top margin-bottom"
+                href="/editngodetails"
+                role="button"
+                >Edit Profile</a
+              ><br />
+              <a
+                class="btn btn-primary margin-top margin-bottom"
+                href="/provideservice"
+                role="button"
+                >Provide Service</a
+              >
+            </div>
+
+            <a href="/">Go back to Dashboard</a>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="../../js/bootstrap.min.js"></script>
+  </body>
+</html>

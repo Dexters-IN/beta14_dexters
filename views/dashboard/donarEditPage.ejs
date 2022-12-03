@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="wrapper-container col-6">
+        <p class="text-center fs-4"><b>Donar Edit Page</b></p>
+        <form
+          action="/editdonardetails?_method=PUT"
+          id="form"
+          name="f"
+          method="POST"
+          novalidate
+        >
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              oninput="RemoveInvalidName()"
+              placeholder="Full Name"
+              value="<%= userDetails[0].name %> "
+              required
+            />
+            <div class="feedback-msg" id="msg">
+              <small>Enter a valid name</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              oninput="removeInvalidEmail()"
+              placeholder="mail@example.com"
+              value="<%= userDetails[0].email %> "
+              required
+            />
+            <div class="feedback-msg-e" id="msg-e">
+              <small>Enter a valid email</small>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="number" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="number"
+              name="phone"
+              oninput="removeInvalidNumber()"
+              placeholder="10 digit Number"
+              value="<%= userDetails[0].phone %> "
+              required
+            />
+            <div class="feedback-msg-n" id="msg-n">
+              <small>Enter a valid number (Format: 'XXXXXXXXXX')</small>
+            </div>
+          </div>
+
+          <div class="grp-field d-flex margin-bottom justify-content-between">
+            <button type="submit" class="btn btn-primary">Save Changes</button
+            ><br />
+            <a class="btn btn-outline-primary" href="/donarpage" role="button"
+              >Cancel, Go Back</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/js/registerFormClientSideValidation.js"></script>
+  </body>
+</html>

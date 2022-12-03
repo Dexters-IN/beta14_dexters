@@ -4,41 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Donar Form</title>
+    <title>Public Form</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <div class="container d-flex justify-content-center">
       <div class="wrapper-container col-6">
-        <span class="text-center fs-2"><p>Donar Form</p></span>
+        <span class="text-center fs-2"><p>Public Form</p></span>
         <hr />
-        <form method="post" action="/donarform" novalidate>
-          <label class="m-1"><b>Food for</b></label
-          ><br />
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="type"
-              value="Child"
-              id="child"
-            />
-            <label class="form-check-label" for="child"> Child </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="type"
-              value="Adult"
-              id="adult"
-            />
-            <label class="form-check-label" for="adult"> Adult </label>
-          </div>
+        <form method="post" action="/publicform" novalidate>
+            
+            
           <div class="mb-3">
             <label for="quantity" class="form-label"
-              ><b>Food available for people (count)</b></label
+              ><b>Count of Food Seekers identified</b></label
             >
             <input
               type="number"
@@ -83,7 +63,58 @@
           >
             Get Location</button
           ><br />
-          <div class="btn-grp margin-bottom">
+          <div class="mb-3">
+            <label for="landmark" class="form-label"><b>Landmark</b></label>
+            <input
+              class="form-control"
+              id="landmark"
+              name="landmark"
+              oninput="removeInvalidSuggestion()"
+              placeholder="Near MANIT"
+              required
+            ></input>
+            <div class="feedback-msg-suggestion" id="msg-suggestion">
+              <small>Enter a valid Landmark</small>
+            </div>
+        </div>
+        <label class="m-1"><b>Are the food needer informed?</b></label
+            ><br />
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="informed"
+                value="Yes"
+                id="Yes"
+              />
+              <label class="form-check-label" for="Yes"> Yes </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="informed"
+                value="No"
+                id="No"
+              />
+              <label class="form-check-label" for="No"> No </label>
+            </div>
+            <div class="mb-3">
+                <label for="number" class="form-label"><b>Phone Number (Optional)</b></label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="number"
+                  name="phone"
+                  oninput="removeInvalidNumber()"
+                  placeholder="10 digit Number"
+                  required
+                />
+                <div class="feedback-msg-n" id="msg-n">
+                  <small>Enter a valid number (Format: 'XXXXXXXXXX')</small>
+                </div>
+              </div>
+          <div class="btn-grp margin-top margin-bottom">
             <button type="submit" class="btn btn-primary submit-btn">
               Submit
             </button>
@@ -92,7 +123,7 @@
             </button>
           </div>
         </form>
-        <a href="/donarpage">Go back to Donar profile Page</a>
+        <a href="/">Go back to Dashboard</a>
       </div>
     </div>
     <script>

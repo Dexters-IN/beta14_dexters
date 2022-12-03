@@ -10,6 +10,7 @@ var session = require('express-session')
 const passport = require('passport')
 const LocalStrategy = require('passport-local');
 const User = require('./models/user')
+const methodOverride = require('method-override')
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')))
@@ -22,14 +23,15 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }))
+app.use(methodOverride('_method'))
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 const DonarSchema = require('./models/donarhistory');
-// const { find } = require('./models/user');
 const DonarHistory = require('./models/donarhistory');
+const Public = require('./models/public');
 mongoose.connect('mongodb://localhost:27017/MANITDemo')
     .then(() => {
         console.log("Connection Opended!!")
@@ -101,16 +103,62 @@ app.get('/logout', function (req, res, next) {
 
 app.get('/donarpage', isLoggedIn, async (req, res) => {
     const userDetails = await User.find({ username: req.user.username });
-    console.log(userDetails)
     const history = await DonarHistory.find({ username: req.user.username })
-    console.log(history);
-    res.render('./dashboard/donarDashboard', { history })
-    // res.send('work')
+    let totalsum = 0;
+    for (let totalqty of history) {
+        totalsum = totalsum + totalqty.quantity;
+    }
+    res.render('./dashboard/donarDashboard', { history, userDetails, totalsum })
+})
+app.get('/editdonardetails', isLoggedIn, async (req, res) => {
+    const userDetails = await User.find({ username: req.user.username });
+    res.render('./dashboard/donarEditPage', { userDetails });
+})
+
+app.put('/editdonardetails', async (req, res) => {
+    const userDetails = await User.find({ username: req.user.username });
+    const updatedData = await User.findOneAndUpdate({ username: req.user.username }, { ...req.body })
+    res.redirect('./donarpage')
 })
 
 app.use((err, req, res, next) => {
     const { status = 500, message = 'Something went wrong... Please try again...' } = err;
     res.status(status).render(__dirname + '/error');
+})
+
+app.get('/publicform', (req, res) => {
+    res.render('./publicPage/form')
+})
+
+app.post('/publicform', async (req, res) => {
+    const newData = req.body;
+    const userData = new Public(newData);
+    await userData.save()
+    res.redirect('/');
+})
+
+app.get('/ngodashboard', async (req, res) => {
+    const userDetails = await User.find({ username: req.user.username });
+    res.render('./ngo/dashboard', { userDetails })
+})
+
+app.get('/editngodetails', async (req, res) => {
+    const userDetails = await User.find({ username: req.user.username });
+    res.render('./ngo/ngoeditpage', { userDetails })
+})
+
+app.put('/editngodetails', async (req, res) => {
+    const userDetails = await User.find({ username: req.user.username });
+    const updatedData = await User.findOneAndUpdate({ username: req.user.username }, { ...req.body })
+    res.redirect('/ngodashboard')
+})
+
+app.get('/productservice', (req, res) => {
+    res.render('./ngo/productService')
+})
+
+app.get('/superadmin/dashboard', (req, res) => {
+    res.render('./superAdmin/dashboard')
 })
 
 app.get('*', (req, res) => {

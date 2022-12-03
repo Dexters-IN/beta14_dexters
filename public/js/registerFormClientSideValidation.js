@@ -62,9 +62,7 @@ const feedbackDivForImg = document.getElementById("msg-img");
 const feedbackDivForEmail = document.getElementById("msg-e");
 const feedbackDivForNumber = document.getElementById("msg-n");
 const feedbackDivForPassword = document.getElementById("msg-p");
-const feedbackDivForSuggestion =
-    document.getElementById("msg-suggestion");
-
+const feedbackDivForSuggestion = document.getElementById("msg-suggestion");
 
 function testemail(useremail) {
     var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
