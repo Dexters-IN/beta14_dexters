@@ -99,7 +99,9 @@ app.get('/logout', function (req, res, next) {
     });
 });
 
-app.get('/donarpage', async (req, res) => {
+app.get('/donarpage', isLoggedIn, async (req, res) => {
+    const userDetails = await User.find({ username: req.user.username });
+    console.log(userDetails)
     const history = await DonarHistory.find({ username: req.user.username })
     console.log(history);
     res.render('./dashboard/donarDashboard', { history })

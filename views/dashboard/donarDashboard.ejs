@@ -10,26 +10,46 @@
   </head>
   <body>
     <div class="container">
-      <div class="wrapper-container">
-        <h2>Welcome John,</h2>
-        <div class="row d-flex justify-content-center">
-          <% for(let detail of history){ %>
-          <div class="container border-box d-flex flex-column">
-            <span><b>Quantity of Food Donated:</b><%= detail.quantity %> </span>
-            <span><b>Food for:</b><%= detail.type %> </span>
-            <span><b>Date:</b><%= detail.date %> </span>
-            <span
-              ><b>Location:</b
-              ><a
-                href=<%=`https://www.google.com/maps/@${detail.latitude},${detail.longitude}z`%> 
-                target="_blank"
-                >Click here..</a
-              ></span
-            >
-          </div>
-          <% } %>
+        <div class="wrapper-container">
+          <h2>Welcome John,</h2>
+          <div class="row d-flex">
+          <section class="col-7">
+            <h3>Personal Details</h3>
+            <span class="text-design"><b>Name:</b>John</span><br>
+            <span class="text-design"><b>Contact No:</b>1234567890</span><br>
+            <span class="text-design"><b>Email:</b>mail@example.com</span><br>
+            <span class="text-design"><b>Address:</b>Lorem ducimus dolore, cumque voluptatem itaque, repudiandae molestias qui ipsum dolores voluptatum perspiciatis at reprehenderit.</span><br>
+            <div class="btn-grp m-3">
+                <a class="btn btn-info margin-top margin-bottom" href="/editdonardetails" role="button">Edit Personal Details</a><br>
+                <a class="btn btn-primary margin-top margin-bottom" href="/donarform" role="button">Donate Food</a>
+            </div>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <span class="text-center fs-4"><b>Total of people served:</b></span><br>
+                <input class="text-center btn btn-primary btn-design" type="button" value="54">            
+            </div>
+          </section>
+          <section class="col-5 ">
+            <h3 class="margin-left-1 text-center">Recent Donations</h3>
+            <div class="row overflow-auto section-height d-flex justify-content-center">
+            <% for(let detail of history){ %>
+            <div class="container border-box d-flex flex-column">
+                <span><b>Quantity of Food Donated:</b><%= detail.quantity %> </span>
+                <span><b>Food for:</b><%= detail.type %> </span>
+                <span><b>Date:</b><%= detail.date %> </span>
+                <span
+                ><b>Location:</b
+                ><a
+                    href=<%=`https://www.google.com/maps/@${detail.latitude},${detail.longitude}z`%> 
+                    target="_blank"
+                    >Click here..</a
+                ></span
+                >
+            </div>
+            <% } %>
         </div>
+        </section>
       </div>
+    </div>
     </div>
     <script src="../../js/bootstrap.min.js"></script>
   </body>

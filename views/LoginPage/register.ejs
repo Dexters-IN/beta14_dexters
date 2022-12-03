@@ -12,61 +12,91 @@
     <div class="container d-flex align-items-center justify-content-center">
       <div class="wrapper-container col-6">
         <p class="text-center fs-4"><b>Registration Form</b></p>
-        <form action="/register" method="post">
+        <form 
+          action="/register"
+          id="form"
+          name="f"
+          method="POST"
+          novalidate
+        >
           <div class="mb-3">
-            <label for="name" class="form-label">Full Name</label>
+            <label for="name" class="form-label">Name</label>
             <input
               type="text"
               class="form-control"
-              name="name"
               id="name"
-              placeholder="Naran Karthikeyan"
+              name="name"
+              oninput="RemoveInvalidName()"
+              placeholder="Full Name"
               required
             />
+            <div class="feedback-msg" id="msg">
+              <small>Enter a valid name</small>
+            </div>
           </div>
           <div class="mb-3">
-            <label for="emailField" class="form-label">Email</label>
+            <label for="email" class="form-label">Email address</label>
             <input
               type="email"
               class="form-control"
+              id="email"
               name="email"
-              id="emailField"
-              placeholder="abc@example.com"
+              oninput="removeInvalidEmail()"
+              placeholder="mail@example.com"
               required
             />
+            <div class="feedback-msg-e" id="msg-e">
+              <small>Enter a valid email</small>
+            </div>
           </div>
+
+          
+
           <div class="mb-3">
-            <label for="usernameField" class="form-label">Username</label>
+            <label for="suggestionText" class="form-label">Username</label>
             <input
-              type="username"
               class="form-control"
+              id="suggestionText"
               name="username"
-              id="usernameField"
+              oninput="removeInvalidSuggestion()"
               placeholder="naran12"
               required
-            />
+            ></input>
+            <div class="feedback-msg-suggestion" id="msg-suggestion">
+              <small>Enter a valid username</small>
+            </div>
           </div>
+
           <div class="mb-3">
-            <label for="passwordField" class="form-label">Password</label>
+            <label for="password" class="form-label">Password</label>
             <input
               type="password"
               class="form-control"
+              id="password"
               name="password"
-              id="passwordField"
+              oninput="removeInvalidPassword()"
               required
             />
+            <div class="feedback-msg-p" id="msg-p">
+              <small>Enter a valid Password</small>
+            </div>
           </div>
           <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number</label>
+            <label for="number" class="form-label">Phone Number</label>
             <input
               type="tel"
               class="form-control"
+              id="number"
               name="phone"
-              id="phone"
-              placeholder="10 digit number"
+              oninput="removeInvalidNumber()"
+              placeholder="10 digit Number"
               required
             />
+            <div class="feedback-msg-n" id="msg-n">
+              <small>Enter a valid number (Format: 'XXXXXXXXXX')</small>
+            </div>
           </div>
+
           <p>Who are You?</p>
           <div class="form-check">
             <input
@@ -88,12 +118,22 @@
             />
             <label class="form-check-label" for="Donar"> Donar </label>
           </div>
-          <div class="grp-field d-flex justify-content-between">
+
+          <div class="grp-field d-flex margin-bottom justify-content-between">
             <button type="submit" class="btn btn-primary">Sign up</button><br />
-            <a href="/login">Login</a>
+            <button
+            type="reset"
+            onclick="resetAll()"
+            class="btn btn-outline-primary clear-btn"
+          >
+            Clear Form
+          </button>
           </div>
         </form>
+        <span class="text-center margin-top-for-a"><p>Already have an account? <br> <a href="/login">Login</a></p></span>
       </div>
     </div>
+
+    <script src="/js/registerFormClientSideValidation.js"></script>
   </body>
 </html>
