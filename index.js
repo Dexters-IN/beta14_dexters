@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -23,7 +27,10 @@ app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
-mongoose.connect('mongodb://localhost:27017/IQACFormDemo')
+const DonarSchema = require('./models/donarhistory');
+// const { find } = require('./models/user');
+const DonarHistory = require('./models/donarhistory');
+mongoose.connect('mongodb://localhost:27017/MANITDemo')
     .then(() => {
         console.log("Connection Opended!!")
     })
@@ -40,7 +47,6 @@ const isLoggedIn = (req, res, next) => {
     next();
 }
 
-
 app.get('/', (req, res) => {
     res.render('./dashboard')
 })
@@ -52,7 +58,8 @@ app.get('/register', (req, res) => {
 app.post('/register', async (req, res) => {
     const user = new User(req.body)
     const newUser = await User.register(user, req.body.password)
-    res.send(newUser);
+    // res.send(newUser);
+    res.redirect('/')
     // res.send(req.body)
 })
 
@@ -66,12 +73,23 @@ app.post('/login', passport.authenticate('local', { failureFlash: true, failureR
 })
 
 app.get('/donarform', isLoggedIn, (req, res) => {
-    res.render('./foodProvider/donarPage')
+    res.render('./foodProvider/donarform')
     // throw console.error('some');
 })
 
-app.post('/donarform', isLoggedIn, (req, res) => {
-    res.send(req.body)
+app.post('/donarform', isLoggedIn, async (req, res) => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    console.log(today);
+    const newData = req.body;
+    newData.username = req.user.username;
+    newData.date = today;
+    const userData = new DonarSchema(newData);
+    await userData.save();
+    res.redirect('/donarpage');
 })
 
 app.get('/logout', function (req, res, next) {
@@ -80,6 +98,13 @@ app.get('/logout', function (req, res, next) {
         res.redirect('/');
     });
 });
+
+app.get('/donarpage', async (req, res) => {
+    const history = await DonarHistory.find({ username: req.user.username })
+    console.log(history);
+    res.render('./dashboard/donarDashboard', { history })
+    // res.send('work')
+})
 
 app.use((err, req, res, next) => {
     const { status = 500, message = 'Something went wrong... Please try again...' } = err;

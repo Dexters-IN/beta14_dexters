@@ -6,6 +6,18 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    field: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: Number,
+        required: true
     }
 })
 

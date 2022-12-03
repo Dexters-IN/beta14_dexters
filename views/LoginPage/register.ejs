@@ -10,9 +10,20 @@
   </head>
   <body>
     <div class="container d-flex align-items-center justify-content-center">
-      <div class="wrapper-container col-5">
-        <p class="text-center fs-4"><b>Register Form</b></p>
+      <div class="wrapper-container col-6">
+        <p class="text-center fs-4"><b>Registration Form</b></p>
         <form action="/register" method="post">
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="name"
+              placeholder="Naran Karthikeyan"
+              required
+            />
+          </div>
           <div class="mb-3">
             <label for="emailField" class="form-label">Email</label>
             <input
@@ -20,6 +31,8 @@
               class="form-control"
               name="email"
               id="emailField"
+              placeholder="abc@example.com"
+              required
             />
           </div>
           <div class="mb-3">
@@ -29,6 +42,8 @@
               class="form-control"
               name="username"
               id="usernameField"
+              placeholder="naran12"
+              required
             />
           </div>
           <div class="mb-3">
@@ -38,6 +53,18 @@
               class="form-control"
               name="password"
               id="passwordField"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              name="phone"
+              id="phone"
+              placeholder="10 digit number"
+              required
             />
           </div>
           <p>Who are You?</p>

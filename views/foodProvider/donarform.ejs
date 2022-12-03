@@ -12,31 +12,29 @@
     <div class="container d-flex justify-content-center">
       <div class="wrapper-container col-6">
         <span class="text-center fs-2"><p>Donar Form</p></span>
+        <hr />
         <form method="post" action="/donarform" novalidate>
-          <label class="m-1"><b>Type of People</b></label
+          <label class="m-1"><b>Food for</b></label
           ><br />
           <div class="form-check">
             <input
               class="form-check-input"
               type="radio"
               name="type"
-              id="flexRadioDefault1"
+              value="Child"
+              id="child"
             />
-            <label class="form-check-label" for="flexRadioDefault1">
-              Child
-            </label>
+            <label class="form-check-label" for="child"> Child </label>
           </div>
           <div class="form-check">
             <input
               class="form-check-input"
               type="radio"
               name="type"
-              id="flexRadioDefault2"
-              checked
+              value="Adult"
+              id="adult"
             />
-            <label class="form-check-label" for="flexRadioDefault2">
-              Default checked radio
-            </label>
+            <label class="form-check-label" for="adult"> Adult </label>
           </div>
           <div class="mb-3">
             <label for="quantity" class="form-label"
@@ -85,7 +83,14 @@
           >
             Get Location</button
           ><br />
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="btn-grp">
+            <button type="submit" class="btn btn-primary submit-btn">
+              Submit
+            </button>
+            <button type="reset" class="btn btn-outline-primary clear-btn">
+              Clear Form
+            </button>
+          </div>
         </form>
       </div>
     </div>

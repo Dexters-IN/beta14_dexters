@@ -17,14 +17,23 @@ body{
     max-height: 1200px;
     padding: 2rem;
 }
-
+.border-box{
+    padding: 1rem;
+    margin: 1rem;
+    width: max-content;
+    border: 1px solid blue;
+    border-radius: 1rem;
+}
 .margin-top,.margin-top a{
     margin-top: 1rem;
 }
 .margin-bottom{
     margin-bottom: 1rem;
 }
-
+.btn-grp{
+    display: flex;
+    justify-content: space-between;
+}
 a:link{
     text-decoration: none;
 }
