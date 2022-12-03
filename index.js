@@ -5,17 +5,11 @@ const mongoose = require('mongoose');
 var session = require('express-session')
 const passport = require('passport')
 const LocalStrategy = require('passport-local');
-const flash = require('connect-flash')
 const User = require('./models/user')
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')))
 app.use(express.urlencoded({ extended: true }))
-app.use(flash())
-app.use((req, res, next) => {
-    res.locals.success = req.flash('success');
-    next();
-})
 app.use(session({
     secret: 'thisisdemosessionexample', resave: false, saveUninitialized: true,
     cookie: {
@@ -58,7 +52,6 @@ app.get('/register', (req, res) => {
 app.post('/register', async (req, res) => {
     const user = new User(req.body)
     const newUser = await User.register(user, req.body.password)
-    req.flash('success', 'Successfully registered!!')
     res.send(newUser);
     // res.send(req.body)
 })
@@ -74,15 +67,26 @@ app.post('/login', passport.authenticate('local', { failureFlash: true, failureR
 
 app.get('/donarform', isLoggedIn, (req, res) => {
     res.render('./foodProvider/donarPage')
+    // throw console.error('some');
 })
 
-app.post('/donarform', (req, res) => {
+app.post('/donarform', isLoggedIn, (req, res) => {
     res.send(req.body)
 })
 
-app.get('/logout', (req, res) => {
-    req.logout();
-    req.flash('success', "GoodBye!")
+app.get('/logout', function (req, res, next) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    });
+});
+
+app.use((err, req, res, next) => {
+    const { status = 500, message = 'Something went wrong... Please try again...' } = err;
+    res.status(status).render(__dirname + '/error');
+})
+
+app.get('*', (req, res) => {
     res.redirect('/');
 })
 
