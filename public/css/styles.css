@@ -9,6 +9,9 @@ body{
     font-size: 16px;
     min-height: 100vh;
 }
+.text-design{
+    display: inline-block;
+}
 .wrapper-container{
     margin: 40px;
     background-color: white;

@@ -9,28 +9,62 @@
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="wrapper-container col-12">
+    <div class="container d-flex justify-content-center align-items-center">
+      <div class="wrapper-container col-10">
         <h1 class="text-center">Analytics Section</h1>
-        <div class="row d-flex align-items-center justify-content-between">
-          <span class="text-design"
-            >Active Donars:
-            <p id="donars"></p
-          ></span>
-          <span class="text-design"
-            >Active Receiver:
-            <p id="receiver"></p
-          ></span>
+        <div
+          class="row d-flex align-items-center justify-content-between margin-top"
+        >
+          <span class="text-design col-5"
+            ><b> Active Donars:</b> <span id="donars">54</span></span
+          >
+          <span class="text-design col-5"
+            ><b>Active Receiver: </b><span id="receiver">55</span></span
+          >
         </div>
         <div class="row d-flex justify-content-between">
-          <span class="text-design"
-            >Available food for people:
-            <p id="available"></p
-          ></span>
-          <span class="text-design"
-            >Food Needed by People:
-            <p id="needed"></p
-          ></span>
+          <span class="text-design col-5"
+            ><b>Available food for people:</b
+            ><span id="available">1000</span></span
+          >
+          <span class="text-design col-5"
+            ><b>Food Needed by People:</b> <span id="needed">250</span></span
+          >
+        </div>
+        <div class="row d-flex margin-top justify-content-around">
+          <a
+            class="btn btn-primary margin-top margin-bottom col-3"
+            href="/superadmin/lod"
+            role="button"
+            >List of Donors</a
+          >
+          <a
+            class="btn btn-info margin-top margin-bottom col-3"
+            href="/superadmin/listofngo"
+            role="button"
+            >List of NGOs</a
+          >
+        </div>
+        <hr />
+        <div class="row d-flex justify-content-around">
+          <a
+            class="btn btn-primary margin-top margin-bottom col-3"
+            href="/superadmin/donorlog"
+            role="button"
+            >Donor logs</a
+          >
+          <a
+            class="btn btn-primary margin-top margin-bottom col-3"
+            href="/superadmin/ngolog"
+            role="button"
+            >NGO logs</a
+          >
+          <a
+            class="btn btn-primary margin-top margin-bottom col-3"
+            href="/superadmin/publiclog"
+            role="button"
+            >Public logs</a
+          >
         </div>
       </div>
     </div>

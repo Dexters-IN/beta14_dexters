@@ -31,7 +31,7 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 const DonarSchema = require('./models/donarhistory');
 const DonarHistory = require('./models/donarhistory');
-const Public = require('./models/public');
+const General = require('./models/public');
 mongoose.connect('mongodb://localhost:27017/MANITDemo')
     .then(() => {
         console.log("Connection Opended!!")
@@ -132,7 +132,7 @@ app.get('/publicform', (req, res) => {
 
 app.post('/publicform', async (req, res) => {
     const newData = req.body;
-    const userData = new Public(newData);
+    const userData = new General(newData);
     await userData.save()
     res.redirect('/');
 })
@@ -153,14 +153,41 @@ app.put('/editngodetails', async (req, res) => {
     res.redirect('/ngodashboard')
 })
 
-app.get('/productservice', (req, res) => {
-    res.render('./ngo/productService')
+app.get('/provideservice', (req, res) => {
+    res.render('./ngo/provideService')
 })
 
 app.get('/superadmin/dashboard', (req, res) => {
     res.render('./superAdmin/dashboard')
 })
 
+app.get('/superadmin/lod', async (req, res) => {
+    const userDetails = await User.find({ field: 'donor' });
+    console.log(userDetails);
+    res.render('./superAdmin/listOfDonor', { userDetails });
+})
+
+app.get('/superadmin/listofngo', async (req, res) => {
+    const userDetails = await User.find({ field: 'ngo' });
+    console.log(userDetails);
+    res.render('./superAdmin/listOfNgos', { userDetails });
+})
+
+app.get('/superadmin/donorlog', async (req, res) => {
+    // const userDetails = await User.find({ field: 'ngo' });
+    // console.log(userDetails);
+    res.render('./superAdmin/donorlog');
+})
+app.get('/superadmin/ngolog', async (req, res) => {
+    // const userDetails = await User.find({ field: 'ngo' });
+    // console.log(userDetails);
+    res.render('./superAdmin/ngolog');
+})
+app.get('/superadmin/publiclog', async (req, res) => {
+    // const userDetails = await User.find({ field: 'ngo' });
+    // console.log(userDetails);
+    res.render('./superAdmin/publiclog');
+})
 app.get('*', (req, res) => {
     res.redirect('/');
 })
