@@ -1,25 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="This is social network html5 template available in themeforest......"
+    />
+    <meta
+      name="keywords"
+      content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page"
+    />
+    <meta name="robots" content="index, follow" />
+    <title>Feed the Need</title>
+    <link rel="shortcut icon" href="../images/favicon_32p.png" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <title>Home</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/ionicons.min.css" />
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+  margin:0;
+}
+.olu {
+  margin-right: 30 px;
+}
+.btn {
+  background-color: black;
+  margin-right: 30 px;
+  color: white;
+}
+.btn:hover{
+  color: black;
+  background-color: white;
+}
+.olu{
+  color: white;
+}
+.gaji{
+  margin-top: 10px;
+  background-color: white;
+}
+.flex-option{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0px;
+}
+.navitem::marker{
+  display: none !important;
+}
+    </style>
+    <link rel="shortcut icon" type="image/png" href="../images/fav.png" />
   </head>
   <body>
-    <h1>Home Page</h1>
-    <a href="/donarform">donar form</a><br />
-    <a href="/donarpage">dashboard</a><br />
-    <a href="/login">Login</a><br />
-    <a href="/register">Register</a><br />
-    <a href="/logout">Logout</a><br />
-    <a href="/publicform">Public Form</a><br />
-    <a href="/ngodashboard">NGO DashBoard</a><br />
-    <a href="/editngodetails">Edit NGO Details</a><br />
-    <a href="/superadmin/dashboard">SA Dashboard</a>
-    <a href="/productservice">Product Service</a>
 
+    <header id="header" class="lazy-load">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          
+          <a class="navbar-brand" href="#">Feed the Need</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/publicform">Public Form</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/donarpage">Donor Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/donarpage">NSO Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/donarpage">SA Dashboard</a>
+              </li>
+            </ul>
+          </div>
+          <div class="margin-left-auto">
+            <a class="navbar-brand" href="/login">Login</a>
+            <a class="navbar-brand" href="/logout">Register</a>
+              <!-- <a class="navbar-brand" href="/logout">Logout</a> -->
+          </div>
+        </div>
+      </nav>
+
+    </header>
+   
+    <section id="banner">
+      <div class="container">
+        
+        <div class="sign-up-form">
+          <a href="index.html" class="logo"
+            ><img src="images/logo.png" alt="Friend Finder"
+          /></a>
+          <h2 class="text-white">Feed the Need</h2>
+          <div class="line-divider"></div>
+          <div class="form-wrapper">
+            <p class="signup-text">
+              The main objective of this product is to bridge the gap between
+              <b>Food Donors</b> and <b>Food Recipients</b> with an additional
+              mediator which are <b>NGOs</b>.
+            </p>
+    
+             
+              <a href="/register"><button class="btn" class="olu">Sign up</button></a>
+              
+              <a href="/login"><button class="btn" class="olu">Sign in</button></a>
+              
+            
+
+            <!--<button class="btn-secondary">Signup</button>-->
+          </div>
+          <img class="form-shadow" src="../images/bottom-shadow.png" alt="" />
+        </div>
+        <!-- Sign Up Form End -->
+
+        <svg class="arrows hidden-xs hidden-sm">
+          <path class="a1" d="M0 0 L30 32 L60 0"></path>
+          <path class="a2" d="M0 20 L30 52 L60 20"></path>
+          <path class="a3" d="M0 40 L30 72 L60 40"></path>
+        </svg>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container wrapper flex-option">
+        <h1 class="section-title slideDown">what are you</h1>
+        <div class="row slideUp d-flex justify-content-center">
+          <div class="feature-item col-md-2 col-sm-6 col-xs-6 col-md-offset-2">
+            <div class="feature-icon">
+              <a class="olu" href="/donarform" target="_blank"
+                ><i class="icon ion-person-add"></i
+              ></a>
+            </div>
+            <h3>Donate</h3>
+          </div>
+          <div class="feature-item col-md-2 col-sm-6 col-xs-6">
+            <div class="feature-icon">
+              <a class="olu" href="/publicform" target="_blank"
+                ><i class="icon ion-images"></i
+              ></a>
+            </div>
+            <h3>Receive</h3>
+          </div>
+          <div class="feature-item col-md-2 col-sm-6 col-xs-6">
+            <div class="feature-icon">
+              <a class="olu" href="/ngodashboard" target="_blank"
+                ><i class="icon ion-chatbox-working"></i
+              ></a>
+            </div>
+            <h3>NGOs</h3>
+          </div>
+          <div class="feature-item col-md-2 col-sm-6 col-xs-6">
+            <div class="feature-icon">
+              <a class="olu" href="/superadmin/dashboard" target="_blank"
+                ><i class="icon ion-compose"></i
+              ></a>
+            </div>
+            <h3>Super Admin</h3>
+          </div>
+        </div>
+        <h2 class="sub-title">find awesome people like you</h2>
+        <div id="incremental-counter" data-value="651"></div>
+        <p>People Already Signed Up</p>
+        <img
+          src="../images/face-map.png"
+          alt=""
+          class="img-responsive face-map slideUp hidden-sm hidden-xs"
+        />
+      </div>
+    </section>
+    <section id="site-facts">
+      <div class="container wrapper">
+        <div class="circle">
+          <ul class="facts-list">
+            <li>
+              <div class="fact-icon">
+                <i class="icon ion-ios-people-outline"></i>
+              </div>
+              <h3 class="text-white">573 M (40.6%)</h3>
+              <p>Avg amount of people who are starving for food in India</p>
+            </li>
+            <li>
+              <div class="fact-icon"><i class="icon ion-images"></i></div>
+              <h3 class="text-white">565 M (40%)</h3>
+              <p>Avg amount of food getting waste per year in India</p>
+            </li>
+            <li>
+              <div class="fact-icon">
+                <i class="icon ion-checkmark-round"></i>
+              </div>
+              <h3 class="text-white">1.41 B</h3>
+              <p>Avg population of India as according to Dec 2022</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+      <div class="copyright margin-top">
+        <p>
+          Copyright @
+          <a href="https://dexters-in.netlify.app/" target="_blank">Dexters</a>
+          2022. All rights reserved
+        </p>
+      </div>
+    </footer>
+
+    <!--preloader-->
+    <div id="spinner-wrapper">
+      <div class="spinner"></div>
+    </div>
+    <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.appear.min.js"></script>
+    <script src="../js/jquery.incremental-counter.js"></script>
+    <script src="../js/script.js"></script>
   </body>
+
 </html>

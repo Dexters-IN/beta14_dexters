@@ -33,6 +33,9 @@ const DonarSchema = require('./models/donarhistory');
 const DonarHistory = require('./models/donarhistory');
 const General = require('./models/public');
 const LogData = require('./models/log.js');
+
+// const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/MANITDemo';
+
 mongoose.connect('mongodb://localhost:27017/MANITDemo')
     .then(() => {
         console.log("Connection Opended!!")
@@ -54,6 +57,7 @@ const isLoggedIn = (req, res, next) => {
 }
 
 app.get('/', (req, res) => {
+
     res.render('./dashboard')
 })
 
