@@ -43,9 +43,9 @@ NGOs and social activists.
 
 ### TECHNOLOGIES USED :-
 <pre>
-               <b>   HTML                                      CSS                                   JavaScript 
-                Express JS                                Node JS                                  MongoDB
-                 Python                                     EJS                                    Markdown <b>
+           <b>   HTML                                  CSS                               JavaScript 
+            Express JS                            Node JS                              MongoDB
+             Python                                 EJS                                Markdown <b>
 </pre>
 <br>
 
