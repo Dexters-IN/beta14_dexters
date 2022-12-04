@@ -7,8 +7,50 @@
     <title>Product Service</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/styles.css" />
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+    </style>
   </head>
   <body>
-    <h1>Welcome</h1>
+    <div class="conatainer">
+      <div class="wrapper-container">
+        <h1 class="text-center">Provide Service</h1>
+        <form action="/provideService" method="post">
+          <div class="row d-flex justify-content-around">
+            <% for(let detail of donarDetails) { %> <% for(let receiver of
+            publicDetails) { %>
+
+            <div class="col-3 border-box-style">
+              <p><b>Donor name:</b><%= detail.name %></p>
+              <p><b>Available Food:</b><%= detail.quantity %></p>
+              <p><b>Receiver Details</b></p>
+              <p><b>Quantity needed:</b><%= receiver.quantity %></p>
+              <p><b>Contact:</b><%= receiver.phone %></p>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="selected"
+                  value="<%= detail._id %>,<%= receiver._id%>"
+                  id="flexCheckDefault<%= receiver._id%>"
+                />
+                <label
+                  class="form-check-label"
+                  for="flexCheckDefault<%= receiver._id%>"
+                >
+                  Select
+                </label>
+              </div>
+            </div>
+            <% } %> <% } %>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

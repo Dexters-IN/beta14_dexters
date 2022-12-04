@@ -27,6 +27,13 @@ body{
     border: 1px solid blue;
     border-radius: 1rem;
 }
+
+.border-box-style{
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid blue;
+    border-radius: 1rem;
+}
 .feedback-msg {
     color: #fa1b39;
     padding-left: 14px;

@@ -7,11 +7,32 @@
     <title>Public Form</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
       <div class="wrapper-container">
         <h1 class="text-center">NGO log</h1>
+        <table style="width: 100%" class="margin-bottom">
+          <tr class="text-center">
+            <th>Donar ID</th>
+            <th>Receiver ID</th>
+            <th>Status</th>
+          </tr>
+          <% for(let value of details){ %>
+          <tr class="text-center">
+            <td><%= value.donarID %></td>
+            <td><%= value.receiverID %></td>
+            <td>Success</td>
+          </tr>
+          <% } %>
+        </table>
       </div>
     </div>
   </body>

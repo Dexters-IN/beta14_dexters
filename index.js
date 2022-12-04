@@ -32,6 +32,7 @@ passport.deserializeUser(User.deserializeUser())
 const DonarSchema = require('./models/donarhistory');
 const DonarHistory = require('./models/donarhistory');
 const General = require('./models/public');
+const LogData = require('./models/log.js');
 mongoose.connect('mongodb://localhost:27017/MANITDemo')
     .then(() => {
         console.log("Connection Opended!!")
@@ -40,6 +41,9 @@ mongoose.connect('mongodb://localhost:27017/MANITDemo')
         console.log("Error, Please Check...")
         console.log(err)
     })
+
+let donor_no = 1;
+let ngo_no = 1;
 
 
 const isLoggedIn = (req, res, next) => {
@@ -59,10 +63,16 @@ app.get('/register', (req, res) => {
 
 app.post('/register', async (req, res) => {
     const user = new User(req.body)
+    if (req.body.field === 'ngo') {
+        user.sno = `n${ngo_no}`
+        ngo_no = ngo_no + 1;
+    }
+    else {
+        user.sno = `d${donor_no}`
+        donor_no = donor_no + 1;
+    }
     const newUser = await User.register(user, req.body.password)
-    // res.send(newUser);
     res.redirect('/')
-    // res.send(req.body)
 })
 
 app.get("/login", (req, res) => {
@@ -70,13 +80,11 @@ app.get("/login", (req, res) => {
 })
 
 app.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
-    // res.send(req.body);
     res.redirect('/');
 })
 
 app.get('/donarform', isLoggedIn, (req, res) => {
     res.render('./foodProvider/donarform')
-    // throw console.error('some');
 })
 
 app.post('/donarform', isLoggedIn, async (req, res) => {
@@ -115,7 +123,7 @@ app.get('/editdonardetails', isLoggedIn, async (req, res) => {
     res.render('./dashboard/donarEditPage', { userDetails });
 })
 
-app.put('/editdonardetails', async (req, res) => {
+app.put('/editdonardetails', isLoggedIn, async (req, res) => {
     const userDetails = await User.find({ username: req.user.username });
     const updatedData = await User.findOneAndUpdate({ username: req.user.username }, { ...req.body })
     res.redirect('./donarpage')
@@ -137,59 +145,78 @@ app.post('/publicform', async (req, res) => {
     res.redirect('/');
 })
 
-app.get('/ngodashboard', async (req, res) => {
+app.get('/ngodashboard', isLoggedIn, async (req, res) => {
     const userDetails = await User.find({ username: req.user.username });
     res.render('./ngo/dashboard', { userDetails })
 })
 
-app.get('/editngodetails', async (req, res) => {
+app.get('/editngodetails', isLoggedIn, async (req, res) => {
     const userDetails = await User.find({ username: req.user.username });
     res.render('./ngo/ngoeditpage', { userDetails })
 })
 
-app.put('/editngodetails', async (req, res) => {
+app.put('/editngodetails', isLoggedIn, async (req, res) => {
     const userDetails = await User.find({ username: req.user.username });
     const updatedData = await User.findOneAndUpdate({ username: req.user.username }, { ...req.body })
     res.redirect('/ngodashboard')
 })
 
-app.get('/provideservice', (req, res) => {
-    res.render('./ngo/provideService')
+app.get('/provideservice', isLoggedIn, async (req, res) => {
+    let donarDetails = await User.find({ field: 'donar' });
+    const quantityOfFoodDonorHas = await DonarHistory.find({ username: donarDetails[0].username });
+    let totalQuantityAvailablePerDonar = 0;
+    for (let i of quantityOfFoodDonorHas) {
+        totalQuantityAvailablePerDonar = i.quantity + totalQuantityAvailablePerDonar
+    }
+    donarDetails[0].quantity = totalQuantityAvailablePerDonar
+    const publicDetails = await General.find({})
+    console.log(donarDetails)
+    res.render('./ngo/provideService', { donarDetails, publicDetails })
 })
 
-app.get('/superadmin/dashboard', (req, res) => {
+app.post('/provideService', isLoggedIn, async (req, res) => {
+    const elementsSelected = req.body.selected
+    const dbArray = {}
+    console.log(elementsSelected);
+    for (let element of elementsSelected) {
+        element = String(element)
+        const splitArray = element.split(',')
+        dbArray.donarID = splitArray[0];
+        dbArray.receiverID = splitArray[1];
+        const userData = new LogData(dbArray);
+        await userData.save();
+    }
+    res.redirect('/ngodashboard')
+})
+
+app.get('/superadmin/dashboard', isLoggedIn, (req, res) => {
     res.render('./superAdmin/dashboard')
 })
 
-app.get('/superadmin/lod', async (req, res) => {
-    const userDetails = await User.find({ field: 'donor' });
+app.get('/superadmin/lod', isLoggedIn, async (req, res) => {
+    const userDetails = await User.find({ field: 'donar' });
     console.log(userDetails);
     res.render('./superAdmin/listOfDonor', { userDetails });
 })
 
-app.get('/superadmin/listofngo', async (req, res) => {
+app.get('/superadmin/listofngo', isLoggedIn, async (req, res) => {
     const userDetails = await User.find({ field: 'ngo' });
     console.log(userDetails);
     res.render('./superAdmin/listOfNgos', { userDetails });
 })
 
-app.get('/superadmin/donorlog', async (req, res) => {
-    // const userDetails = await User.find({ field: 'ngo' });
-    // console.log(userDetails);
+app.get('/superadmin/donorlog', isLoggedIn, async (req, res) => {
     res.render('./superAdmin/donorlog');
 })
-app.get('/superadmin/ngolog', async (req, res) => {
-    // const userDetails = await User.find({ field: 'ngo' });
-    // console.log(userDetails);
-    res.render('./superAdmin/ngolog');
+app.get('/superadmin/ngolog', isLoggedIn, async (req, res) => {
+    const details = await LogData.find();
+    res.render('./superAdmin/ngolog', { details });
 })
-app.get('/superadmin/publiclog', async (req, res) => {
-    // const userDetails = await User.find({ field: 'ngo' });
-    // console.log(userDetails);
+app.get('/superadmin/publiclog', isLoggedIn, async (req, res) => {
     res.render('./superAdmin/publiclog');
 })
 app.get('*', (req, res) => {
-    res.redirect('/');
+    res.send('Invalid Path');
 })
 
 app.listen(3000, (req, res) => {
