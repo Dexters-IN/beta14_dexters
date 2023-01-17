@@ -53,8 +53,8 @@ NGOs and social activists.
 
 | <b>Vishnuvasan</b> | <b>Rahul</b> | <b>John</b> |
 | --- | --- | --- |
-| [Github](https://github.com/Cipher-unhsiV "Vishnu profile") | [Github](https://github.com/Rahul040202 "Rahul profile") | [Github](https://github.com/John-prg "John profile") |
+| [Github](https://github.com/Cipher-unhsiV "Vishnu profile") | [Github](https://github.com/Rahul040202 "Rahul profile") | [Github](https://github.com/john-williams-m "John profile") |
 | [LinkedIn](https://www.linkedin.com/in/cipher-unhsiv/ "Vishnu")| [LinkedIn](https://www.linkedin.com/in/rahul-g-9ba993224/ "Rahul") | [LinkedIn](https://www.linkedin.com/in/john-williams-964a81248/ "John") |
-|![@Vishnuvasan](https://avatars.githubusercontent.com/Cipher-unhsiV?s=150&v=1)| ![@Rahul](https://avatars.githubusercontent.com/Rahul040202?s=150&v=1) | ![@John](https://avatars.githubusercontent.com/John-prg?s=150&v=1) |
+|![@Vishnuvasan](https://avatars.githubusercontent.com/Cipher-unhsiV?s=150&v=1)| ![@Rahul](https://avatars.githubusercontent.com/Rahul040202?s=150&v=1) | ![@John](https://avatars.githubusercontent.com/john-williams-m?s=150&v=1) |
 
 
